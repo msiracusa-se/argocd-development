@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-toolkit
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: development
+  source:
+    path: helm
+    repoURL: https://github.com/msiracusa-se/devops-toolkit.git
+    targetRevision: HEAD
+    helm:
+      values: |
+        image:
+          tag: latest
+        ingress:
+          host: dev.devops-toolkit.127.0.0.1.nip.io
+      version: v3
+  destination:
+    namespace: development
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+
