@@ -16,7 +16,7 @@ spec:
         image:
           tag: latest
         ingress:
-          host: development.devops-toolkit.127.0.0.1.nip.io
+          host: development.devops-toolkit.20.81.64.167.nip.io
       version: v3
   destination:
     namespace: development
